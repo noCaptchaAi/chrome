@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <div class="hcapWrapper">
+        <label for="hCaptchaAutoOpen">
+            Auto Open:
+            <input type="checkbox" id="hCaptchaAutoOpen" name="hCaptchaAutoOpen" />
+            <span class="toggle-switch"></span>
+        </label>
+
+        <label for="hCaptchaAutoSolve">
+            Auto Solve:
+            <input type="checkbox" id="hCaptchaAutoSolve" name="hCaptchaAutoSolve" />
+            <span class="toggle-switch"></span>
+        </label>
+        <label for="hCaptchaAlwaysSolve">
+            Always Solve:
+            <input type="checkbox" id="hCaptchaAlwaysSolve" name="hCaptchaAlwaysSolve" />
+            <span class="toggle-switch"></span>
+        </label>
+
+        <label>
+            Solving Type
+            <select name="hCaptchaSolvingType" id="hCaptchaSolvingType">
+                <option value="audio">Audio</option>
+                <option value="image">Image</option>
+            </select>
+        </label>
+
+        <div>
+            <h4>Solving Delay (Click, Submit)</h4>
+            <input type="number" min="1" placeholder="Click Delay" id="reCaptchaClickDelay"
+                name="reCaptchaClickDelay" />
+            <input type="number" min="1" placeholder="Submit Delay" id="reCaptchaSubmitDelay" min="1"
+                name="reCaptchaSubmitDelay" />
+        </div>
+    </div>
+
+    <script>
+        const inputElements = document.querySelectorAll('input[type="checkbox"], input[type="number"], select');
+
+        // Retrieve values from localStorage for all input elements
+        inputElements.forEach((element) => {
+            const elementId = element.id;
+            const elementType = element.nodeName.toLowerCase() === 'select' ? 'select' : element.getAttribute('type');
+
+            if (elementType === 'checkbox') {
+                element.checked = localStorage.getItem(`${elementType}Value_${elementId}`) === 'true';
+            } else {
+                element.value = localStorage.getItem(`${elementType}Value_${elementId}`) || '';
+            }
+        });
+
+        // Update values in localStorage when inputs change
+        inputElements.forEach((element) => {
+            element.addEventListener('input', () => {
+                const elementId = element.id;
+                const elementType = element.nodeName.toLowerCase() === 'select' ? 'select' : element.getAttribute('type');
+
+                if (elementType === 'checkbox') {
+                    localStorage.setItem(`${elementType}Value_${elementId}`, element.checked.toString());
+                } else {
+                    localStorage.setItem(`${elementType}Value_${elementId}`, element.value);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

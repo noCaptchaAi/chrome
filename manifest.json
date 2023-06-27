@@ -1,0 +1,104 @@
+{
+  "manifest_version": 3,
+  "name": "noCaptchaAi: CAPTCHA Solver",
+  "version": "0.1",
+  "background": {
+    "service_worker": "src/background.js"
+  },
+  "author": "noCaptchaAi.com",
+  "description": "Captcha Solving Ai. ReCaptcha v2 Image and Audio, hCaptcha normal/Enterprise, hCaptcha Token, OCR Captcha Automated Solver",
+  "permissions": [
+    "tabs",
+    "storage",
+    "scripting",
+    "webRequest",
+    "webNavigation",
+    "declarativeNetRequest",
+    "contextMenus",
+    "activeTab"
+  ],
+  "action": {
+    "default_icon": {
+      "16": "icons/16n.png",
+      "48": "icons/48n.png"
+    },
+    "default_title": "noCaptchaAi",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/elementPicker.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": false
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/hCaptcha.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": false
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/ocr.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": false
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/iframes.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": false
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/recaptcha_audio.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": false
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/reCaptcha.js"
+      ],
+      "all_frames": true,
+      "match_about_blank": false
+    },
+    {
+      "matches": [
+        "https://newconfig.nocaptchaai.com/?APIKEY=*"
+      ],
+      "js": [
+        "src/config.js"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "icons/16n.png",
+    "32": "icons/32n.png",
+    "48": "icons/48n.png",
+    "128": "icons/128n.png"
+  }
+}

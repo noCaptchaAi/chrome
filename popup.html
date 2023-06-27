@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>noCaptchaAi</title>
+    <link rel="stylesheet" href="light.css" />
+    <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+    <div id="header">
+        <div id="SettingsModalOpenButton">
+            <img src="/icons/menu.png" alt="menu" srcset="">
+        </div>
+        <div id="settingsModal" class="modal">
+            <div class="modal-content">
+                <div class="caphead">
+                    <h3>Global Settings</h3>
+
+                    <!-- <span id="SettingsModalCloseButton">&times;</span> -->
+                    <span id="SettingsModalCloseButton">
+                        <img src="/icons/back.png" alt="CloseButton" srcset="" />
+                        <!-- &times; -->
+                    </span>
+                </div>
+
+                <div class="settingsWrapper">
+                    <label for="customEndpoint">
+                        <div class="column singlesettings">
+                            <div class="row">
+                                <p>Custom Endpoint:</p>
+                                <input type="text" id="customEndpoint" name="customEndpoint" />
+                            </div>
+                            <small>Enter your Custom Endpoint(assinged by admin)</small>
+                        </div>
+                    </label>
+
+                    <label for="logsEnabled">
+                        <div class="column singlesettings">
+                            <div class="row">
+                                <p>Enable Logs:</p>
+                                <input type="checkbox" id="logsEnabled" name="logsEnabled" />
+                                <span class="toggle-switch"></span>
+                            </div>
+                            <small> Enable Printing console Logs Globally</small>
+                        </div>
+                    </label>
+
+                    <label for="debugMode">
+                        <div class="column singlesettings">
+                            <div class="row">
+                                <p>Debug Mode:</p>
+                                <input type="checkbox" id="debugMode" name="debugMode" />
+                                <span class="toggle-switch"></span>
+                            </div>
+                            <small>Test Only New Challenges</small>
+                        </div>
+                    </label>
+
+
+                    <div class="settingsfooter">
+                        <div class="links">
+                            <!-- <h3>Helper Links</h3> -->
+                            <a class="btn" href="https://nocaptchaai.com/plans" target="_blank"
+                                rel="noopener noreferrer">
+                                <img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADkklEQVR4nO2ZSWgVQRCGv5jENcQNRRFcEOOCCi4gruhBURANbgiCiAjiGoLgxaB4EAQNak5xJ7dogooaSQwRFfeIuCFu4IqIK+ghMXGjoRqaZt681/3mBQLzQ13eP1U1/0x3dU09iBEjRowY7RSjgCKgCngAfANagWbgM9AIVACrgQGGXzawBDgErLG4NkNHSX4P+Odgf4B6YD6QJbGGAVeFa7C4jEI9xbeOAoJMvalJEjMX2G9wStjITAnoAVRHIMB+Q7uAHMmxHvgrnFqaO2QJRobBwLOIRZhWB+RJriKLOwl0ikLEEOB9BkVouwl0k5ylFldvCPVCL+B5G4jQdgHoIMXkjsWpqugFVTnOet6Qho/vdqOa/bK4zT5CVqbxZNMR0gqMFf8DFqeEjXERodbqR4+bUBtzsRGnKGCJpGKXxb8P8MPizrgIKXZM/B2YHbJEi42ymqrNEP/D1u8qzvhURKjELx2TzjPKdIWU6ifAEaCfcAcdY1aJ37QQLhRTHBPeFb+cBGfNY6Az0BtocojbDHSXB2t3EipOfjIhOx2FlInfjJBrlsk1rp3BQvE7EcAVJhNyyTHZ7hSE+NrekD2ruYT44JjstLG0bkQspEZizw3hApHrkUyt1wLxV3thrQhqjUDII4k7MYRL2JL4JHwVUH7VRl0klctlk/8z7LXR79ncm0wIMRu/rXIymx9H6uuvsi2F5Ea4vr8A5UZLkSXr2iXGQ9+l5bPZk1kLMEdiT3X0PR+y2TWXEA2OyUqlBLeEXFMrsfMcY+8JKb+ai+xAHCF+91JoAns6xl4QciDqwzIhJjsm2yR+S0OuKZFrZjrEbZI2RO2tdwm4UCjHFw4J1bVdxHcd8Mn6fjhu8NWOnwSJmkbNJYU9AEglqR4QqKnHUGC4IUBhi2PM6eJ3NKCNH5eqkK4e1Ut1ucvlIMQ46WdJhXGJ1SD+fYGfFncKR6xwTK5NtSYaYZUskbUAo8W/LKC111zKyJKG0EeMho/vNvEtCBg+bMQTqlw+9bwhHztnjIMaA/ZhWhgU0aw3mV2Xvamwz+Iupjug0xgo3+CZElFjTBmLLa5S3lBkyPfsYMPst3QSelC9wRpil8hSywgK5fsjXRG3gAlG120O467IOZRx5Mo/UI0eb6DOGB/p6nRNuFrh2uSPHhvDpd9Sjd194KucBU3SrtwGjgGrgP6GX7ZMJcuF0/OvGDFixIhBu8F/eGk1ENIblx0AAAAASUVORK5CYII=">
+                                Pricing</a>
+                            <a class="btn" href="https://docs.nocaptchaai.com" target="_blank"
+                                rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+                                    <path
+                                        d="M 35.445312 2.0117188 C 35.056812 2.0253438 34.669266 2.1265938 34.322266 2.3085938 C 35.227266 2.7565937 35.865703 3.6414062 35.970703 4.6914062 C 35.988703 4.8174062 36 4.9322812 36 4.9882812 L 36 44.988281 C 36 46.174281 35.306594 47.190734 34.308594 47.677734 C 34.672594 47.876734 35.079 47.988281 35.5 47.988281 C 35.873 47.988281 36.224969 47.901859 36.542969 47.755859 L 36.544922 47.759766 C 38.152922 46.927766 46.192281 42.764703 46.488281 42.595703 C 47.421281 42.060703 48 41.061281 48 39.988281 L 48 9.9882812 C 48 8.9902813 47.505734 8.0619062 46.677734 7.5039062 C 46.357734 7.2869063 36.582031 2.2363281 36.582031 2.2363281 L 36.580078 2.2402344 C 36.224078 2.0727344 35.833813 1.9980938 35.445312 2.0117188 z M 33 3.9882812 C 32.744125 3.9882812 32.487969 4.08575 32.292969 4.28125 C 32.292969 4.28125 26.568469 10.718844 20.230469 17.839844 L 27.724609 23.970703 L 34 18.685547 L 34 4.9882812 C 34 4.7322812 33.902031 4.47625 33.707031 4.28125 C 33.511531 4.08575 33.255875 3.9882812 33 3.9882812 z M 8 10.988281 C 7.844 10.988281 7.5538594 10.988844 6.2558594 11.589844 C 5.5408594 11.920844 3.0507812 13.228516 3.0507812 13.228516 C 2.7207812 13.407516 2.4545781 13.687719 2.2675781 14.011719 C 2.3435781 13.999719 2.4190469 13.988281 2.4980469 13.988281 L 2.5 13.988281 C 3.168 13.988281 3.5776562 14.454469 3.7226562 14.605469 C 3.7226562 14.605469 31.929969 45.332313 32.292969 45.695312 C 32.487969 45.890313 32.742047 45.988281 32.998047 45.988281 C 33.254047 45.988281 33.510078 45.890313 33.705078 45.695312 C 33.900078 45.500312 34 45.244281 34 44.988281 L 34 31.658203 C 34 31.658203 9.53375 11.661813 9.34375 11.507812 C 8.97575 11.173813 8.497 10.988281 8 10.988281 z M 2.1992188 15.988281 C 2.0892188 15.988281 2 16.078453 2 16.189453 L 2 34.794922 C 2 34.901922 2.0873125 34.990234 2.1953125 34.990234 C 2.2513125 34.990234 2.3009375 34.964781 2.3359375 34.925781 L 8 28.638672 L 8 22.007812 L 2.3417969 16.046875 C 2.3057969 16.010875 2.2542188 15.988281 2.1992188 15.988281 z M 12.253906 26.802734 C 12.253906 26.802734 3.6585469 36.452781 3.5605469 36.550781 C 3.2895469 36.821781 2.915 36.988281 2.5 36.988281 C 2.422 36.988281 2.3464844 36.978797 2.2714844 36.966797 C 2.4734844 37.317797 2.7697188 37.607156 3.1367188 37.785156 L 3.1328125 37.791016 C 4.0028125 38.233016 6.8739531 39.691703 7.2519531 39.845703 C 7.4899531 39.940703 7.741 39.988281 8 39.988281 C 8.347 39.988281 8.6900469 39.898656 8.9980469 39.722656 C 9.0210469 39.709656 17.527344 32.552734 17.527344 32.552734 L 12.253906 26.802734 z" />
+                                </svg> Developer
+                            </a>
+                            <a class="btn" href="https://nocaptchaai.com/software" target="_blank"
+                                rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
+                                    <path
+                                        d="M 5 2 C 3.347656 2 2 3.347656 2 5 L 2 35 C 2 36.652344 3.347656 38 5 38 L 45 38 C 46.652344 38 48 36.652344 48 35 L 48 5 C 48 3.347656 46.652344 2 45 2 Z M 7 7 L 43 7 L 43 33 L 7 33 Z M 19.28125 11.28125 L 11.28125 19.28125 L 10.59375 20 L 11.28125 20.71875 L 19.28125 28.71875 L 20.71875 27.28125 L 13.4375 20 L 20.71875 12.71875 Z M 30.71875 11.28125 L 29.28125 12.71875 L 36.5625 20 L 29.28125 27.28125 L 30.71875 28.71875 L 38.71875 20.71875 L 39.40625 20 L 38.71875 19.28125 Z M 20 39 L 20 43 L 30 43 L 30 39 Z M 10 40 C 9.703125 40 9.410156 40.117188 9.21875 40.34375 L 4.21875 46.34375 C 3.96875 46.644531 3.929688 47.085938 4.09375 47.4375 C 4.257813 47.789063 4.613281 48 5 48 L 45 48 C 45.386719 48 45.742188 47.789063 45.90625 47.4375 C 46.070313 47.085938 46.027344 46.644531 45.78125 46.34375 L 40.78125 40.34375 C 40.589844 40.117188 40.296875 40 40 40 L 32 40 L 32 45 L 18 45 L 18 40 Z" />
+                                </svg>Softwares</a>
+                            <a class="btn" href="https://nocaptchaai.com/chrome" target="_blank"
+                                rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="45px" height="45px">
+                                    <path
+                                        d="M 25 2 C 12.317 2 2 12.317 2 25 C 2 37.683 12.317 48 25 48 C 37.683 48 48 37.683 48 25 C 48 12.317 37.683 2 25 2 z M 8.0429688 12.664062 L 15.046875 24.076172 C 15.514875 18.994172 19.798 15 25 15 L 43.462891 15 C 43.813891 15.646 44.125203 16.316 44.408203 17 L 30.974609 17 C 33.412609 18.825 35 21.727 35 25 C 35 26.787 34.522266 28.463016 33.697266 29.916016 C 33.690266 29.930016 33.691594 29.944984 33.683594 29.958984 L 24.537109 45.976562 C 23.790109 45.959562 23.054125 45.902547 22.328125 45.810547 L 28.976562 34.171875 C 27.756563 34.702875 26.413 35 25 35 C 21.441 35 18.318875 33.124406 16.546875 30.316406 C 16.523875 30.287406 16.496562 30.264422 16.476562 30.232422 L 6.8320312 14.515625 C 7.2030312 13.874625 7.6079688 13.259062 8.0429688 12.664062 z M 25 17 A 8 8 0 0 0 17 25 A 8 8 0 0 0 25 33 A 8 8 0 0 0 33 25 A 8 8 0 0 0 25 17 z" />
+                                </svg>
+                                Extension</a>
+                            <a class="btn" href="https://nocaptchaai.com/chrome" target="_blank"
+                                rel="noopener noreferrer">
+                                <img
+                                    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAAD1klEQVR4nMWZW4hWVRTHfzZj5Y3UGi/IoJUjgZVKkqU+qOCtwqfSrNQoTBPNWzklQySoIOqDInhB0AfxkgZpKEoPoiRDBFNpJpip+JB5y2R0RJ3xi/Wx9rDYc75z9vlu/WHBfPuy9v/svc5a/30G8sdLwGLga+Bn4BrQBNwFbgCngG+AOmA4UEEZ0AdYBlwEMintL2BFqYg9BawD7uVBLGNMdray2OSmAFeBBv27N1ANvAeczYOkHHvPYpFbqE+9EmgX0T84z538B3gtDZEOOQgkYXwBx90MvBO60FhgQwLJR4DlQGf9/ShwusCYvA+8EkJwpE44AQzStoHA+5oiugKbgD1mzvwCyTk7E/LiyBFfN1t/OYezL82c40UiKDYjZBfrAhzJETvsLyJBedhEPB/gqN6b8yzwItALqNIUkg/BB0AX9dlR47sNvgp09nHMQ04qYBflPUDjcZ7vuDvwbwpnu4BxwJOenwMFEJTE79CgnFLvnjURB+6NR6tMIXE40/iS9PWp+yG571zKePlWy53DC0BjgQQ/avUGJzX9ZDEsYHKdpqIaoBttX5TzZuxvKizi/P0JrAI2m3r+lvHp/Imk4/OAHetENCaokJBxt4AP9UQqTF6Nspc9P28AA0zFcqppAQGpoXWrgcd1FyXeDpoxQnKIt+juGJ+S0nLhaTNOxHCWQBzBY2by4oj+ZmC0px03JcSkiAwHG8uC6WacxCJXUmT52oj+T7ynv2D6burxTQZum/a3zRx5QReZ33s8FZ5VFEkB7TDZtEuc1HrH3+DN/cD0bzftY0z739p2VMvnQ2+N7EUnjmCzljHBE8AhrckuqB22efOWefLtTdNXYx6qJWbtO/YJ4mwWuVGpMefG/qH60keN6XcYkbBu9ojrAwheikg1kg4kzfxqQmGmV+grVUu63ZJxs03/6oR1RZ+yNYCg2A7vbiuJe4Im2KFK2EJC4EdglCF4xIyrCqj/W2TgtECCTiT4lcSH3NjWmNh+RtsrvFPYGLDeu6iWa04pEj7TK4HDY/pmrtfAdmN/JxozAtaRCtbDTTiUgqC1Rr1C3s3RPzWC3NyA1Cb2nZ30ep4EMwn2nJfE0yjuiZag5KufSkDwBDAH2Jfys4l/tWiVXXFJs1zWAryaI3YTdVw5bC0xaA/88D+Sq891o7OoCpBgpbCzab56VWsOKxe50xG6MBFSMb4vA7nDpl6nhtTNJQGSLJOHNenVMp/Pfm3QT+8YxUhDLcBOoC8lQI2mohANmfFMvpjJ3P6lIOZDlImIzaXAXtWEcrMToSAmf/+ifV8U8m+I/wDXIsH/knovwQAAAABJRU5ErkJggg==">
+                                Addon</a>
+                        </div>
+                        <div>
+                            <p>Need Support, Customised Service or Captcha?</p>
+                            <a class="btn" href="mailto:ai@nocaptchaai.com">
+                                <b>EMAIL @ ai@nocaptchaai.com</b>
+                                <b>Contact admins on Discord/Telegram</b>
+                            </a>
+                            <p>2022-2023 @ NoCaptchaAi.com</p>
+                        </div>
+                        <div class="links">
+                            <!-- <h3>Helper Links</h3> -->
+                            <a href="https://nocaptchaai.com/discord" target="_blank" rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="40px" height="40px">
+                                    <path
+                                        d="M42.298,11.65c-0.676-1.021-1.633-1.802-2.768-2.256c-2.464-0.988-4.583-1.648-6.479-2.02 C31.721,7.114,30.404,7.768,29.771,9l-0.158,0.308c-1.404-0.155-2.895-0.207-4.593-0.164c-1.741-0.042-3.237,0.009-4.643,0.164 L20.22,9c-0.633-1.232-1.952-1.885-3.279-1.625c-1.896,0.371-4.016,1.031-6.479,2.02c-1.134,0.454-2.091,1.234-2.768,2.256 c-4.721,7.131-6.571,14.823-5.655,23.517c0.032,0.305,0.202,0.578,0.461,0.741c3.632,2.29,6.775,3.858,9.891,4.936 c1.303,0.455,2.748-0.054,3.517-1.229l1.371-2.101c-1.092-0.412-2.158-0.9-3.18-1.483c-0.479-0.273-0.646-0.884-0.373-1.363 c0.273-0.481,0.884-0.65,1.364-0.373c3.041,1.734,6.479,2.651,9.942,2.651s6.901-0.917,9.942-2.651 c0.479-0.277,1.09-0.108,1.364,0.373c0.273,0.479,0.106,1.09-0.373,1.363c-1.056,0.603-2.16,1.105-3.291,1.524l1.411,2.102 c0.581,0.865,1.54,1.357,2.528,1.357c0.322,0,0.647-0.053,0.963-0.161c3.125-1.079,6.274-2.649,9.914-4.944 c0.259-0.163,0.429-0.437,0.461-0.741C48.869,26.474,47.019,18.781,42.298,11.65z M18.608,28.983c-1.926,0-3.511-2.029-3.511-4.495 c0-2.466,1.585-4.495,3.511-4.495s3.511,2.029,3.511,4.495C22.119,26.954,20.534,28.983,18.608,28.983z M31.601,28.957 c-1.908,0-3.478-2.041-3.478-4.522s1.57-4.522,3.478-4.522c1.908,0,3.478,2.041,3.478,4.522S33.509,28.957,31.601,28.957z" />
+                                </svg>
+                            </a>
+                            <a href="https://nocaptchaai.com/telegram" target="_blank" rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="40px" height="40px">
+                                    <path
+                                        d="M25,2c12.703,0,23,10.297,23,23S37.703,48,25,48S2,37.703,2,25S12.297,2,25,2z M32.934,34.375 c0.423-1.298,2.405-14.234,2.65-16.783c0.074-0.772-0.17-1.285-0.648-1.514c-0.578-0.278-1.434-0.139-2.427,0.219 c-1.362,0.491-18.774,7.884-19.78,8.312c-0.954,0.405-1.856,0.847-1.856,1.487c0,0.45,0.267,0.703,1.003,0.966 c0.766,0.273,2.695,0.858,3.834,1.172c1.097,0.303,2.346,0.04,3.046-0.395c0.742-0.461,9.305-6.191,9.92-6.693 c0.614-0.502,1.104,0.141,0.602,0.644c-0.502,0.502-6.38,6.207-7.155,6.997c-0.941,0.959-0.273,1.953,0.358,2.351 c0.721,0.454,5.906,3.932,6.687,4.49c0.781,0.558,1.573,0.811,2.298,0.811C32.191,36.439,32.573,35.484,32.934,34.375z" />
+                                </svg></a>
+
+                            <a href="https://twitter.com/nocaptchaai">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="40px" height="40px">
+                                    <path
+                                        d="M25,2C12.317,2,2,12.317,2,25s10.317,23,23,23s23-10.317,23-23S37.683,2,25,2z M36.237,20.524 c0.01,0.236,0.016,0.476,0.016,0.717C36.253,28.559,30.68,37,20.491,37c-3.128,0-6.041-0.917-8.491-2.489 c0.433,0.052,0.872,0.077,1.321,0.077c2.596,0,4.985-0.884,6.879-2.37c-2.424-0.044-4.468-1.649-5.175-3.847 c0.339,0.065,0.686,0.1,1.044,0.1c0.505,0,0.995-0.067,1.458-0.195c-2.532-0.511-4.441-2.747-4.441-5.432c0-0.024,0-0.047,0-0.07 c0.747,0.415,1.6,0.665,2.509,0.694c-1.488-0.995-2.464-2.689-2.464-4.611c0-1.015,0.272-1.966,0.749-2.786 c2.733,3.351,6.815,5.556,11.418,5.788c-0.095-0.406-0.145-0.828-0.145-1.262c0-3.059,2.48-5.539,5.54-5.539 c1.593,0,3.032,0.672,4.042,1.749c1.261-0.248,2.448-0.709,3.518-1.343c-0.413,1.292-1.292,2.378-2.437,3.064 c1.122-0.136,2.188-0.432,3.183-0.873C38.257,18.766,37.318,19.743,36.237,20.524z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.youtube.com/@nocaptchaai" target="_blank" rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="40px" height="40px">
+                                    <path
+                                        d="M 44.898438 14.5 C 44.5 12.300781 42.601563 10.699219 40.398438 10.199219 C 37.101563 9.5 31 9 24.398438 9 C 17.800781 9 11.601563 9.5 8.300781 10.199219 C 6.101563 10.699219 4.199219 12.199219 3.800781 14.5 C 3.398438 17 3 20.5 3 25 C 3 29.5 3.398438 33 3.898438 35.5 C 4.300781 37.699219 6.199219 39.300781 8.398438 39.800781 C 11.898438 40.5 17.898438 41 24.5 41 C 31.101563 41 37.101563 40.5 40.601563 39.800781 C 42.800781 39.300781 44.699219 37.800781 45.101563 35.5 C 45.5 33 46 29.398438 46.101563 25 C 45.898438 20.5 45.398438 17 44.898438 14.5 Z M 19 32 L 19 18 L 31.199219 25 Z" />
+                                </svg></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="topbar">
+            <!-- <img src="./icons/logonew.png" width="25px" alt="Logo" /> -->
+            <a href="http://noCaptchaAi.com">
+                <h1>noCaptchaAi</h1>
+            </a>
+            <!-- <label for="PLANTYPE">Plan:</label> -->
+            <select title="Select Plan Type" name="PLANTYPE" id="PLANTYPE">
+                <option value="pro">PRO</option>
+                <option value="free">FREE</option>
+                <option title="Custom plantype works with custom Endpoint" value="custom">Custom</option>
+            </select>
+        </div>
+
+        <!-- <input type="checkbox" name="powerButton" id="powerButton"> -->
+        <label for="extensionEnabled">
+            <input type="checkbox" id="extensionEnabled" name="extensionEnabled" />
+            <span title="Enable/Disable Extension" class="toggle-switch toggle-big"></span>
+        </label>
+    </div>
+    <div class="apikey-wrapper">
+        <div id="apikey" class="api-key">
+            <div title="https://dash.nocaptchaai.com" id="apikey-text">
+                <a href="https://dash.nocaptchaai.com" target="_blank" rel="noopener noreferrer">
+                    Enter APIKEY : Visit Dash
+                </a>
+            </div>
+            <input type="text" placeholder="APIKEY" name="apikey" id="apikey-input" style="display: none" />
+            <button title="Edit API Key" id="edit-button" class="edit-button">
+                🖋️
+            </button>
+        </div>
+
+        <div class="keybtnpair">
+            <button title="Save API Key" id="save-button" class="save-button" style="display: none">
+                Save(Enter)
+            </button>
+            <button title="delete API Key" id="delete-button" class="delete-button" style="display: none">
+                Delete
+            </button>
+        </div>
+    </div>
+    <div id="error-api"></div>
+    <div id="toast"></div>
+
+    <div id="balance-area" class="container">
+        <div class="data-section balance-section" id="balance-section">
+            <!-- <div id="balance-data" class="loader"></div> -->
+        </div>
+        <div class="data-section endpoint-section" id="endpoint-section">
+            <!-- <div id="balance-data" class="loader"></div> -->
+        </div>
+    </div>
+    <div class="refresh-button" id="refresh-button">Refresh</div>
+
+    <div id="hCaptcha" class="captcha-block">
+        <div class="tilewrap">
+
+            <div class="pair">
+                <div class="titlewrap">
+                    <img class="logo" src="/icons/h2.webp" alt="hcaptcha logo" />
+                </div>
+                <h3>hCAPTCHA</h3>
+            </div>
+            <label for="hCaptchaEnabled">
+                <input type="checkbox" id="hCaptchaEnabled" name="hCaptchaEnabled" />
+                <span class="toggle-switch"></span>
+            </label>
+            <button id="hcModalOpenButton">Settings</button>
+        </div>
+
+        <div id="hcModal" class="modal">
+            <div class="modal-content">
+                <div class="caphead">
+                    <h3>hCaptcha Config</h3>
+                    <span id="hcModalCloseButton">
+                        <img src="/icons/back.png" alt="CloseButton" srcset="" />
+                        <!-- &times; -->
+                    </span>
+                </div>
+
+                <div class="settingsWrapper">
+                    <label for="hCaptchaAutoOpen">
+                        <div class="column singlesettings">
+                            <div class="row">
+                                <p>😮 Auto Open</p>
+                                <input type="checkbox" id="hCaptchaAutoOpen" name="hCaptchaAutoOpen" />
+                                <span class="toggle-switch"></span>
+                            </div>
+                            <small>Automatically open hCaptcha when
+                                detected</small>
+                        </div>
+                    </label>
+
+                    <label for="hCaptchaAutoSolve">
+                        <div class="column singlesettings">
+                            <div class="row">
+                                <p>🤖 Auto Solve</p>
+                                <input type="checkbox" id="hCaptchaAutoSolve" name="hCaptchaAutoSolve" />
+                                <span class="toggle-switch toggle-small"></span>
+                            </div>
+                            <small>Automatically solve hCaptcha when
+                                detected</small>
+                        </div>
+                    </label>
+                    <label for="hCaptchaAlwaysSolve">
+                        <div class="column singlesettings">
+                            <div class="row">
+                                <p>🏃 Always Solve</p>
+                                <input type="checkbox" id="hCaptchaAlwaysSolve" name="hCaptchaAlwaysSolve" />
+                                <span class="toggle-switch"></span>
+                            </div>
+                            <small>Always solve hCaptcha when detected</small>
+                        </div>
+                    </label>
+                    <label for="englishLanguage">
+                        <div class="column singlesettings">
+                            <div class="row">
+                                <p>🇺🇸 English Language</p>
+                                <input type="checkbox" id="englishLanguage" name="englishLanguage" />
+                                <span class="toggle-switch"></span>
+                            </div>
+                            <small>Change hCaptcha frame to English</small>
+                        </div>
+                    </label>
+
+                    <div class="row singlesettings">
+                        <p>⌛ 3x3 Grid Solving Delay(sec)</p>
+                        <input type="number" min="1" placeholder="Grid Delay" id="hCaptchaGridSolveTime"
+                            name="hCaptchaGridSolveTime" />
+                    </div>
+
+                    <div class="row singlesettings">
+                        <p>⌛ Multi Select Delay(sec)</p>
+                        <input type="number" min="1" placeholder="MultiSelect Delay" id="hCaptchaMultiSolveTime" min="1"
+                            name="hCaptchaMultiSolveTime" />
+                    </div>
+                    <div class="row singlesettings">
+                        <p>⌛ Bounding Box Solving Delay(sec)</p>
+                        <input type="number" min="1" placeholder=" BoundingBox Delay" id="hCaptchaBoundingBoxSolveTime"
+                            name="hCaptchaBoundingBoxSolveTime" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="reCaptcha" class="captcha-block">
+        <div class="tilewrap">
+            <div class="pair">
+                <div class="titlewrap">
+                    <img class="logo" src="/icons/r2.png" alt="recaptcha logo" />
+                </div>
+                <h3>reCAPTCHA v2</h3>
+            </div>
+            <label for="reCaptchaEnabled">
+                <input type="checkbox" id="reCaptchaEnabled" name="reCaptchaEnabled" />
+                <span class="toggle-switch"></span>
+            </label>
+            <button id="rcModalOpenButton">Settings</button>
+        </div>
+
+        <div id="rcModal" class="modal">
+            <div class="modal-content">
+                <div class="caphead">
+                    <h3>reCaptcha Config</h3>
+                    <!-- <span id="rcModalCloseButton">&times;</span> -->
+                    <span id="rcModalCloseButton">
+                        <img src="/icons/back.png" alt="CloseButton" srcset="" />
+                        <!-- &times; -->
+                    </span>
+                </div>
+
+                <div class="settingsWrapper">
+                    <label for="reCaptchaAutoOpen">
+                        <div class="column singlesettings">
+                            <div class="row">
+                                <p>😮 Auto Open</p>
+                                <input type="checkbox" id="reCaptchaAutoOpen" name="reCaptchaAutoOpen" />
+                                <span class="toggle-switch"></span>
+                            </div>
+                            <small>Automatically open reCaptcha when
+                                detected</small>
+                        </div>
+                    </label>
+
+                    <label for="reCaptchaAutoSolve">
+                        <div class="column singlesettings">
+                            <div class="row">
+                                <p>🤖 Auto Solve</p>
+                                <input type="checkbox" id="reCaptchaAutoSolve" name="reCaptchaAutoSolve" />
+                                <span class="toggle-switch toggle-small"></span>
+                            </div>
+                            <small>Automatically solve reCaptcha when
+                                detected</small>
+                        </div>
+                    </label>
+
+                    <div class="column singlesettings">
+                        <div class="row">
+                            <p>🏃 Solving Type</p>
+                            <select id="reCaptchaSolveType">
+                                <option value="audio">🔊 Audio</option>
+                                <option value="image">🖼️ Image</option>
+                            </select>
+                        </div>
+                        <p>Image or Audio! choice is yours</p>
+                    </div>
+
+                    <div class="column singlesettings">
+                        <div class="row">
+                            <p>⌛ Click Delay (ms)</p>
+                            <input type="number" min="1" placeholder="Click Delay" id="reCaptchaClickDelay"
+                                name="reCaptchaClickDelay" />
+                        </div>
+                        <p>Makes clicks more Humanlike by adding delay</p>
+                    </div>
+                    <div class="column singlesettings">
+                        <div class="row">
+                            <p>⌛ Submit Delay(sec)</p>
+
+                            <input type="number" min="1" placeholder="Submit Delay" id="reCaptchaSubmitDelay" min="1"
+                                name="reCaptchaSubmitDelay" />
+                        </div>
+                        <p>Makes clicks more Humanlike by adding delay</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="ocrCaptcha" class="captcha-block">
+        <div class="tilewrap">
+            <div class="pair">
+                <div class="titlewrap">
+                    <img class="logo" src="/icons/ocr.png" alt="ocr logo" />
+                </div>
+                <h3>OCR Captcha</h3>
+            </div>
+            <label for="ocrEnabled">
+                <input type="checkbox" id="ocrEnabled" name="ocrEnabled" />
+                <span class="toggle-switch"></span>
+            </label>
+            <button id="ocrModalOpenButton">Settings</button>
+        </div>
+
+        <div id="ocrModal" class="modal">
+            <div class="modal-content">
+                <div class="caphead">
+                    <h3>Text OCR Captcha Config</h3>
+                    <!-- <span id="rcModalCloseButton">&times;</span> -->
+                    <span id="ocrModalCloseButton">
+                        <img src="/icons/back.png" alt="CloseButton" srcset="" />
+                        <!-- &times; -->
+                    </span>
+
+                </div>
+                <div class="">
+                    <div class="row" style="font-size: large;">
+                        url:<div id="domain"></div>
+                    </div>
+                    <hr>
+                    <br>
+                    <div class="row-close">
+                        <button id="ocrIDPicker" title="click to view all supported OCR IDs">OCR ID</button>
+                        <textarea rows="1" id="ocrID" type="text"></textarea>
+                    </div>
+                    <div>
+                        <button id="imagePicker">Image CSSPATH : Click to Select</button>
+                        <textarea rows="1" id="imagePickerInput" type="text"></textarea>
+                    </div>
+                    <div>
+                        <button id="answerPicker">Answer CSSPATH : Click to Select</button>
+                        <textarea rows="1" id="answerPickerInput" type="text"></textarea>
+                    </div>
+                    <a style="color: brown; font-size: larger; font-weight: bolder;"
+                        href="https://docs.nocaptchaai.com/en/image/ImageToText.html#ocrid">
+                        View all Supported OCR IDs
+                    </a>
+
+                    <div style="padding-top:10px ;">
+                        <button id="exportOCR">export JSON</button>
+
+                        <div id="importModal" style="display: none;">
+                            <div id="modalContent">
+
+                                <textarea placeholder="Paste JSON here" id="jsonInput"></textarea>
+                                <div id="feedback" class="hidden"></div>
+                                <button id="replaceButton">Replace</button>
+                                <button id="mergeButton">Merge</button>
+                                <button id="closeModalButton">
+                                    <img src="/icons/back.png" alt="CloseButton" srcset="" />
+                                    Go Back
+                                </button>
+                            </div>
+                        </div>
+
+                        <button id="importButton">Import JSON</button>
+
+                        <label for="ocrToastEnabled">
+                            <div class="column singlesettings">
+                                <div class="row">
+                                    <p>OCR Toast Notifications</p>
+                                    <input type="checkbox" id="ocrToastEnabled" name="ocrToastEnabled" />
+                                    <span class="toggle-switch toggle-small"></span>
+                                </div>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <a href="https://nocaptchaai.com/faq" target="_blank" rel="noopener noreferrer">
+            2023 © noCaptchaAi.com</a>
+
+        <div id="export">
+            Export Settings
+        </div>
+        <a target="_blank" rel="noopener noreferrer" href="https://github.com/noCaptchaAi/chrome">v1.0</a>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
