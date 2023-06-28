@@ -21,7 +21,8 @@ body {
 #footer {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    gap: 3px;
     align-items: baseline;
     align-items: baseline;
 }

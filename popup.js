@@ -1077,8 +1077,9 @@ async function fetchLatestRelease() {
         const latestVersion = data.tag_name;
 
         if (latestVersion && latestVersion !== versionElement.innerText) {
-            versionElement.innerText = versionElement.innerText + " update " + latestVersion;
+            versionElement.innerText = "⚡new " + latestVersion;
             versionElement.style.fontSize = ".8rem";
+            versionElement.style.fontWeight = "bold";
             versionElement.href = data.html_url;
             versionElement.classList.add("glowing-text");
         }

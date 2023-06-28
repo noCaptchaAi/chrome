@@ -25,6 +25,16 @@
     "default_title": "noCaptchaAi",
     "default_popup": "popup.html"
   },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "Token.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
   "content_scripts": [
     {
       "matches": [
