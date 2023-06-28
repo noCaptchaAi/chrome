@@ -1,5 +1,5 @@
 # noCaptchaAi: CAPTCHA Solver Chrome Extension (NEW)
-<p>Download --> https://github.com/noCaptchaAi/chrome-extension/releases/latest</p>
+<p>Download --> https://github.com/noCaptchaAi/chrome/releases/latest</p>
 <p>Auto Config --> https://newconfig.nocaptchaai.com
 
 <p>hCAPTCHA, reCAPTCHA v2, OCR/ImageToText Captcha</p>
