@@ -11,6 +11,7 @@
 <a href="https://nocaptchaai.com/software"><img alt="github stars" src="https://img.shields.io/npm/v/nocaptchasolver?label=npm-selenium-solver&style=for-the-badge"></a>
 </p>
 
+![firefox extension screenshot](https://github.com/noCaptchaAi/chrome/assets/38348819/bb857ce9-4ebc-4a7b-806a-ead3411ec74f)
 
 ## Features
 - Uses Blazing fast (hcaptcha :zap: 0.02s ) machine learned API from NoCaptchaAi.com
@@ -31,7 +32,6 @@
 - Click `│ │ Load unpacked │ │` and Select folder OR Drag n drop `chrome` folder on this page, DONE!
 - Visit dash for APIKEY and Use [newconfig](https://newconfig.nocaptchaai.com) to automate your desired config
   
-![firefox extension screenshot](https://github.com/noCaptchaAi/chrome/assets/38348819/bb857ce9-4ebc-4a7b-806a-ead3411ec74f)
 
 
 # Looking for Chrome Extension?
