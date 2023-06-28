@@ -370,14 +370,25 @@
                     images,
                     target,
                     type,
-                    softid: "firefoxExt_V1.0",
+                    softid: "ChromeExtNew_V1.0",
                     method: "recaptcha2",
                 }),
             });
+            if (response.status == 404 || !response.ok) {
+                const h = await response.json();
+                jsNotif(`✘ Error:- ${h.message}`, 10000);
+                throw new Error("✘ Error: " + h.message);
+            }
 
             return await response.json();
         } catch (error) {
-            jsNotif(`${error} + couldn't send solve request`, 3000);
+            console.log(error, "catch");
+            if (error instanceof TypeError && error.message === "Failed to fetch") {
+                jsNotif("✘ IP timeout, wait 5 minutes and try again", 5000, false);
+                throw new Error("✘ IP timeout, wait 5 minutes and try again",);
+            } else {
+                jsNotif(`${error} + couldn't send solve request`, 3000);
+            }
             return error;
         }
     }
@@ -513,6 +524,10 @@
     async function handleSolveQueue(response) {
         if (response.status === "new") {
             const fetchedResponse = await fetch(response.url);
+            if (!fetchedResponse.ok)
+                return new Error(
+                    `Failed to fetch URL. Status code: ${response.status}`
+                );
             const jsonResponse = await fetchedResponse.json();
             return jsonResponse.solution || null;
         } else {

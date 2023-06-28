@@ -117,7 +117,7 @@ chrome.runtime.onMessage.addListener((request) => {
   });
 });
 
-// call for iframe refresh 
+// call for iframe refresh
 // chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
 //   if (changeInfo.status === 'complete') {
 //     chrome.tabs.executeScript(tabId, { file: 'iframesRefresh.js' });
@@ -126,17 +126,17 @@ chrome.runtime.onMessage.addListener((request) => {
 
 
 // screenshot
-chrome.runtime.onMessage.addListener((request, sender) => {
-  return chrome.tabs.captureVisibleTab(sender.tab.windowId, { format: "png" }).then((screenshotUrl) => {
-    let img = new Image();
-    img.onload = function () {
-      let canvas = document.createElement('canvas');
-      canvas.width = request.rect.width;
-      canvas.height = request.rect.height;
-      let ctx = canvas.getContext('2d');
-      ctx.drawImage(img, request.rect.left, request.rect.top, request.rect.width, request.rect.height, 0, 0, request.rect.width, request.rect.height);
-      return canvas.toDataURL();
-    };
-    img.src = screenshotUrl;
-  });
-});
+// chrome.runtime.onMessage.addListener((request, sender) => {
+//   return chrome.tabs.captureVisibleTab(sender.tab.windowId, { format: "png" }).then((screenshotUrl) => {
+//     let img = new Image();
+//     img.onload = function () {
+//       let canvas = document.createElement('canvas');
+//       canvas.width = request.rect.width;
+//       canvas.height = request.rect.height;
+//       let ctx = canvas.getContext('2d');
+//       ctx.drawImage(img, request.rect.left, request.rect.top, request.rect.width, request.rect.height, 0, 0, request.rect.width, request.rect.height);
+//       return canvas.toDataURL();
+//     };
+//     img.src = screenshotUrl;
+//   });
+// });

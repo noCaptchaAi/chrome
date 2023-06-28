@@ -217,19 +217,21 @@ const version = "1.0";
                         softid: `chromeExt_V${version}`,
                     }),
                 });
+                if (!response.ok)
+                    return new Error(
+                        `Failed to fetch URL. Status code: ${response.status}`
+                    );
 
                 response = await response.json();
-                const ans = response.answer; // ans for multi choice
+                const ans = response.answer;
                 const msg = response.message;
                 const sts = response.status;
-                const newurl = response.url; // for non instant task
-                // shuffle function for grid
+                const newurl = response.url;
                 const clicktime = randTimer(250, 350);
 
                 log(ans, msg, sts, newurl, clicktime);
                 let clicks = 0;
 
-                // console.table(response);
 
                 if (response.error) {
                     log(msg);
@@ -346,8 +348,12 @@ const version = "1.0";
                 startTime = 0;
                 previousTask = [];
             } catch (error) {
-                jsNotif("⚠" + error);
-                console.warn(error);
+                if (error instanceof TypeError && error.message === "Failed to fetch") {
+                    jsNotif("✘ IP timeout, wait 5 minutes and try again", 5000, false);
+                    throw new Error("✘ IP timeout, wait 5 minutes and try again",);
+                } else {
+                    jsNotif(`✘${error}`, 5000, false);
+                }
             }
         }
         function shuffle(array) {

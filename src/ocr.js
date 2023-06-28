@@ -108,9 +108,15 @@
           image: base64Image
         })
       });
+
+      if (req.status == 404 || !req.ok) {
+        const h = await req.json();
+        jsNotif(`✘ Error:- ${h.message}`, 10000);
+        throw new Error("✘ Error: " + h.message);
+      }
       res = await req.json();
       log(res, "res");
-      jsNotif(res.solution, 4000);
+      // jsNotif(res.solution, 4000);
       return res.solution;
 
     } catch (error) {
@@ -130,8 +136,8 @@
 
         // document.querySelector(ans).value = res.solution;
         isSolved = true;
-        log("answer typed");
-        jsNotif("answer typed");
+        log("answer typed" + solution);
+        jsNotif(`answer typed:- ${solution}`, 2000);
       } catch (error) {
         jsNotif("error typing answer, check console");
         log(error);
@@ -195,8 +201,12 @@
         reader.readAsDataURL(blob);
       });
     } catch (error) {
-      jsNotif("Failed to fetch the image.", 3000);
-      console.error('Failed to fetch the image.', error);
+      if (error instanceof TypeError && error.message === "Failed to fetch") {
+        jsNotif("✘ IP timeout, wait 5 minutes and try again", 5000, false);
+        throw new Error("✘ IP timeout, wait 5 minutes and try again",);
+      } else {
+        jsNotif(`✘${error}`, 5000, false);
+      }
       throw error;
     }
   }

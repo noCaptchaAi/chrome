@@ -205,10 +205,16 @@
         logoName.style.color = "#000";
         stickyElement.appendChild(logoName);
 
+        const esc = document.createElement("div");
+        esc.innerHTML = "<b>Press ESC to exit the element picker</b>";
+        esc.style.color = "#000";
+        stickyElement.appendChild(esc);
+
         const nameElement = document.createElement("div");
         nameElement.style.marginTop = "2px";
         nameElement.style.color = "#000";
-        nameElement.textContent = type;
+        nameElement.style.fontSize = "15px";
+        nameElement.textContent = type === "ImageElementPicker" ? "🖼️ Image Element Picker" : " 🅣🅔🅧🅣 Answer Element Picker";
         stickyElement.appendChild(nameElement);
 
         cssPathElement = document.createElement("div");

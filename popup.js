@@ -367,9 +367,20 @@ const fetchAndDisplayData = async (url, elementId, fields) => {
             apikey: settings.APIKEY,
         },
     });
+
+    if (response.status === 403) {
+        errorApiElement.style.display = "block";
+        errorApiElement.style.color = "red";
+        errorApiElement.style.height = "100px";
+        errorApiElement.style.fontSize = "20px";
+        errorApiElement.style.marginTop = "10px";
+        errorApiElement.style.textAlign = "center";
+        errorApiElement.innerHTML = "IP timeout, wait 5 minutes and try again";
+        return;
+    }
     const data = await response.json();
 
-    if (data.error) {
+    if (response.error) {
         errorApiElement.style.display = "block";
         errorApiElement.style.color = "red";
         errorApiElement.style.height = "100px";
@@ -387,8 +398,18 @@ const fetchAndDisplayData = async (url, elementId, fields) => {
         errorApiElement.style.display = "none";
     }
 
-    console.log(data, "data");
-    if (data && url === endpointurl && settings.PLANTYPE == null) {
+    // console.log(data, "data");
+    if (data.error) {
+        jsNotif(data.message, 5000);
+        errorApiElement.style.display = "block";
+        errorApiElement.style.color = "red";
+        errorApiElement.style.height = "100px";
+        errorApiElement.style.fontSize = "20px";
+        errorApiElement.style.textAlign = "center";
+        errorApiElement.innerHTML = data.message;
+        console.log(data.message);
+        return;
+    } else if (data && url === endpointurl && settings.PLANTYPE == null) {
         if (data.plan === "free") {
             settings.PLANTYPE = "free";
             chrome.storage.sync.set({ PLANTYPE: "free" });
@@ -472,8 +493,14 @@ const probalurl = "https://manage.nocaptchaai.com/balance";
 const freebalurl = "https://free.nocaptchaai.com/balance";
 
 const refreshData = async () => {
+
+
     const refreshButton = document.getElementById("refresh-button");
-    refreshButton.innerHTML = '<img src="/icons/s.svg" alt="██▒▒▒▒▒▒▒▒ 50%" />';
+    refreshButton.innerHTML = '<img src="/icons/s.svg" width="16px"  alt="██▒▒▒▒▒▒▒▒ 20%" /> ██▒▒▒▒▒▒▒▒  20% ';
+    await sleep(150);
+    refreshButton.innerHTML = '<img src="/icons/s.svg" width="16px"  alt="█████▒▒▒▒▒ 50%" /> █████▒▒▒▒▒ 50% ';
+    await sleep(200);
+    refreshButton.innerHTML = '<img src="/icons/s.svg" width="16px"  alt="█████████▒ 90%" /> █████████▒ 90% ';
     let plan;
     chrome.storage.sync.get(null, (settings) => {
         console.log(settings.APIKEY);
@@ -569,8 +596,12 @@ const deleteApiKey = () => {
 };
 
 const updateApiKeyDisplay = (apikey) => {
-    const partiallyHiddenApiKey =
-        apikey.substring(0, 5) + "*".repeat(apikey.length - 5);
+    // const partiallyHiddenApiKey =
+    //     apikey.substring(0, 5) + "*".repeat(apikey.length - 5);
+    const partiallyHiddenApiKey = apikey && apikey.length >= 5
+        ? apikey.substring(0, 5) + "*".repeat(apikey.length - 5)
+        : apikey ? "*".repeat(apikey.length) : "";
+
     apikeyText.textContent = partiallyHiddenApiKey;
     toggleViewMode();
     apikeyInput.style.display = "none";
@@ -1031,3 +1062,29 @@ document.getElementById('mergeButton').addEventListener('click', function () {
 document.getElementById('ocrIDPicker').addEventListener('click', function () {
     window.open("https://docs.nocaptchaai.com/en/image/ImageToText.html#ocrid");
 });
+
+
+// Check for Extension Update
+const versionElement = document.getElementById("version");
+
+async function fetchLatestRelease() {
+    // const repoUrl = "https://api.github.com/repos/noCaptchaAi/chrome/releases/latest";
+    const repoUrl = "https://api.github.com/repos/noCaptchaAi/chrome-extension/releases/latest";
+
+    try {
+        const response = await fetch(repoUrl);
+        const data = await response.json();
+        const latestVersion = data.tag_name;
+
+        if (latestVersion && latestVersion !== versionElement.innerText) {
+            versionElement.innerText = versionElement.innerText + " update " + latestVersion;
+            versionElement.style.fontSize = ".8rem";
+            versionElement.href = data.html_url;
+            versionElement.classList.add("glowing-text");
+        }
+    } catch (error) {
+        console.error("Error fetching latest release:", error);
+    }
+}
+
+fetchLatestRelease();

@@ -1,12 +1,12 @@
 {
   "manifest_version": 3,
   "name": "noCaptchaAi: CAPTCHA Solver",
-  "version": "0.1",
+  "version": "1.0",
   "background": {
     "service_worker": "src/background.js"
   },
   "author": "noCaptchaAi.com",
-  "description": "Captcha Solving Ai. ReCaptcha v2 Image and Audio, hCaptcha normal/Enterprise, hCaptcha Token, OCR Captcha Automated Solver",
+  "description": "reCaptcha v2, hCaptcha, OCR/ImagetoText Recognition based on NoCaptchaAi.com ",
   "permissions": [
     "tabs",
     "storage",

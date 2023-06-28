@@ -5,8 +5,10 @@ body,
     padding: 0;
 }
 
+
 body {
-    margin: 10px;
+    padding: 3px;
+    border: 3px solid #00000038;
     width: 400px;
     height: fit-content;
     overflow-y: hidden;
@@ -36,6 +38,11 @@ body {
 #export:hover {
     cursor: pointer;
     color: #854a06;
+}
+
+.settingsfooter {
+    padding-top: 20px;
+    padding-left: 35px;
 }
 
 .footer {
@@ -745,4 +752,25 @@ input[type="select"] {
     font-size: small;
     background-color: #5c5656d2;
     border: #bbb9b94f;
+}
+
+
+/* Check for Extension Update */
+.glowing-text {
+    color: green;
+    animation: glowing 2s ease-in-out infinite;
+}
+
+@keyframes glowing {
+    0% {
+        text-shadow: 0 0 5px green;
+    }
+
+    50% {
+        text-shadow: 0 0 20px green;
+    }
+
+    100% {
+        text-shadow: 0 0 5px green;
+    }
 }
