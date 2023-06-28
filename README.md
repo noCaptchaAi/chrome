@@ -1,4 +1,4 @@
-# noCaptchaAi: CAPTCHA Solver Chrome (NEW)
+# noCaptchaAi: CAPTCHA Solver Chrome Extension (NEW)
 <p>Download --> https://github.com/noCaptchaAi/chrome-extension/releases/latest</p>
 <p>Auto Config --> https://newconfig.nocaptchaai.com
 
