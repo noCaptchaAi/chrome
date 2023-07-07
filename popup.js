@@ -497,9 +497,9 @@ const refreshData = async () => {
 
     const refreshButton = document.getElementById("refresh-button");
     refreshButton.innerHTML = '<img src="/icons/s.svg" width="16px"  alt="██▒▒▒▒▒▒▒▒ 20%" /> ██▒▒▒▒▒▒▒▒  20% ';
-    await sleep(150);
+    await sleep(50);
     refreshButton.innerHTML = '<img src="/icons/s.svg" width="16px"  alt="█████▒▒▒▒▒ 50%" /> █████▒▒▒▒▒ 50% ';
-    await sleep(200);
+    await sleep(50);
     refreshButton.innerHTML = '<img src="/icons/s.svg" width="16px"  alt="█████████▒ 90%" /> █████████▒ 90% ';
     let plan;
     chrome.storage.sync.get(null, (settings) => {
@@ -1068,18 +1068,19 @@ document.getElementById('ocrIDPicker').addEventListener('click', function () {
 const versionElement = document.getElementById("version");
 
 async function fetchLatestRelease() {
-    // const repoUrl = "https://api.github.com/repos/noCaptchaAi/chrome/releases/latest";
-    const repoUrl = "https://api.github.com/repos/noCaptchaAi/chrome-extension/releases/latest";
+    const repoUrl = "https://api.github.com/repos/noCaptchaAi/chrome/releases/latest";
 
     try {
         const response = await fetch(repoUrl);
         const data = await response.json();
         const latestVersion = data.tag_name;
+        // const latestVersion = "v1.1";
 
-        if (latestVersion && latestVersion !== versionElement.innerText) {
-            versionElement.innerText = "⚡new " + latestVersion;
+        if (latestVersion && latestVersion !== versionElement.innerText && latestVersion > versionElement.innerText) {
+            versionElement.innerText = "⚡update " + latestVersion;
             versionElement.style.fontSize = ".8rem";
             versionElement.style.fontWeight = "bold";
+            versionElement.title = "New update availble " + latestVersion;
             versionElement.href = data.html_url;
             versionElement.classList.add("glowing-text");
         }

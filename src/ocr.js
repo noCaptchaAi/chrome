@@ -96,7 +96,7 @@
       //   log("mt cap placeholder image detected");
       //   return;
       // }
-      let req = await fetch("https://w.nocaptchaai.com/solve", {
+      let req = await fetch(`https://${settings.PLANTYPE}.nocaptchaai.com/solve`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
