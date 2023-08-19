@@ -34,7 +34,7 @@
   
 
 
-# Looking for Chrome Extension?
+# Looking for Firefox Extension?
 
 ### [Firefox Extension Latest XPI](https://github.com/noCaptchaAi/firefox-addon)
 ### [Firefox Extension Latest ZIP](https://github.com/noCaptchaAi/firefox-addon/releases/latest)
