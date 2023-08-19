@@ -1,5 +1,5 @@
 chrome.runtime.onInstalled.addListener((details) => {
-  // automate extension configuration, easy to deploy in batch. 
+  // automate extension configuration, easy to deploy in batch.
   // visit https://newconfig.nocaptchaai.com or https://dash.nocaptchaai.com/setup
   // paste the json {} defaultConfigs = {your export json}
 
@@ -7,25 +7,25 @@ chrome.runtime.onInstalled.addListener((details) => {
     APIKEY: null,
     PLANTYPE: null,
     customEndpoint: null,
-    hCaptchaEnabled: true,
-    reCaptchaEnabled: true,
-    dataDomeEnabled: true,
-    ocrEnabled: true,
-    ocrToastEnabled: true,
-    extensionEnabled: true,
-    logsEnabled: false,
-    fastAnimationMode: true,
-    debugMode: false,
-    hCaptchaAutoOpen: true,
-    hCaptchaAutoSolve: true,
-    hCaptchaGridSolveTime: 7,
-    hCaptchaMultiSolveTime: 5,
-    hCaptchaBoundingBoxSolveTime: 5,
-    hCaptchaAlwaysSolve: true,
-    englishLanguage: true,
-    reCaptchaAutoOpen: true,
-    reCaptchaAutoSolve: true,
-    reCaptchaAlwaysSolve: true,
+    hCaptchaEnabled: "true",
+    reCaptchaEnabled: "true",
+    dataDomeEnabled: "true",
+    ocrEnabled: "true",
+    ocrToastEnabled: "true",
+    extensionEnabled: "true",
+    logsEnabled: "false",
+    fastAnimationMode: "true",
+    debugMode: "false",
+    hCaptchaAutoOpen: "true",
+    hCaptchaAutoSolve: "true",
+    hCaptchaGridSolveTime: 5,
+    hCaptchaMultiSolveTime: 3,
+    hCaptchaBoundingBoxSolveTime: 3,
+    hCaptchaAlwaysSolve: "true",
+    englishLanguage: "false",
+    reCaptchaAutoOpen: "true",
+    reCaptchaAutoSolve: "true",
+    reCaptchaAlwaysSolve: "true",
     reCaptchaClickDelay: 400,
     reCaptchaSubmitDelay: 1,
     reCaptchaSolveType: "image",
@@ -123,7 +123,6 @@ chrome.runtime.onMessage.addListener((request) => {
 //     chrome.tabs.executeScript(tabId, { file: 'iframesRefresh.js' });
 //   }
 // });
-
 
 // screenshot
 // chrome.runtime.onMessage.addListener((request, sender) => {

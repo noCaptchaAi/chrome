@@ -1,6 +1,9 @@
 (async () => {
   // console.log('OCR.js loaded');
   let settings = await chrome.storage.sync.get(null);
+
+  if (settings.extensionEnabled != "true") return;
+  if (settings.ocrEnabled != "true") return;
   let logs = settings.logsEnabled === "true" ? true : false;
   function log(arg) {
     if (logs) {
@@ -32,11 +35,11 @@
           document.body.removeChild(t);
         }, 1e3);
     }, d || 3e3);
-
-  };
+  }
   async function isIMGANS(imgEle, ansEle) {
     return (
-      document.querySelector(imgEle) != null && document.querySelector(ansEle) != null
+      document.querySelector(imgEle) != null &&
+      document.querySelector(ansEle) != null
     );
   }
 
@@ -57,7 +60,6 @@
   let isSolved = false;
   let breakLoop = false;
 
-
   while (breakLoop == false) {
     await sleep(1000);
     if (settings.APIKEY == undefined || isSolved) return;
@@ -65,20 +67,18 @@
     const i = document.querySelector(img);
     const a = document.querySelector(ans);
 
-    if (i != null && a != null && await isIMGANS(img, ans)) {
+    if (i != null && a != null && (await isIMGANS(img, ans))) {
       // log('domainData found');
       log("image:", i, "answer", a);
       // log(settings.domainData);
-      await getAnswer(i.src, ans).then(
-        async (solution) => {
-          if (!solution) {
-            breakLoop = true;
-            jsNotif("solution error, check console", 2000);
-          }
-          log(solution);
-          await solveCaptcha(solution);
+      await getAnswer(i.src, ans).then(async (solution) => {
+        if (!solution) {
+          breakLoop = true;
+          jsNotif("solution error, check console", 2000);
         }
-      )
+        log(solution);
+        await solveCaptcha(solution);
+      });
     }
   }
 
@@ -96,18 +96,21 @@
       //   log("mt cap placeholder image detected");
       //   return;
       // }
-      let req = await fetch(`https://${settings.PLANTYPE}.nocaptchaai.com/solve`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": settings.APIKEY
-        },
-        body: JSON.stringify({
-          method: "ocr",
-          id: ocrid,
-          image: base64Image
-        })
-      });
+      let req = await fetch(
+        `https://${settings.PLANTYPE}.nocaptchaai.com/solve`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: settings.APIKEY,
+          },
+          body: JSON.stringify({
+            method: "ocr",
+            id: ocrid,
+            image: base64Image,
+          }),
+        }
+      );
 
       if (req.status == 404 || !req.ok) {
         const h = await req.json();
@@ -118,14 +121,11 @@
       log(res, "res");
       // jsNotif(res.solution, 4000);
       return res.solution;
-
     } catch (error) {
       jsNotif("error send task, check console");
       log(error);
     }
-
   }
-
 
   async function solveCaptcha(solution) {
     if (solution) {
@@ -142,9 +142,7 @@
         jsNotif("error typing answer, check console");
         log(error);
       }
-
     }
-
   }
 
   async function toBase64Image(url) {
@@ -155,15 +153,15 @@
     // If it's a data URL, check the image type and convert if necessary.
     if (match) {
       const imgType = match[1];
-      if (imgType !== 'jpeg' && imgType !== 'png') {
+      if (imgType !== "jpeg" && imgType !== "png") {
         const img = new Image();
         img.src = url;
         log(img, "img");
-        await new Promise(resolve => img.onload = resolve);
-        return convertImageToBase64(img, 'image/png');
+        await new Promise((resolve) => (img.onload = resolve));
+        return convertImageToBase64(img, "image/png");
       }
       // remove the data URL prefix
-      return url.replace(dataUrlRegex, '');
+      return url.replace(dataUrlRegex, "");
     }
 
     try {
@@ -172,8 +170,9 @@
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const blob = await response.blob();
-      const contentType = response.headers.get('content-type');
-      const isJpgOrPng = contentType === 'image/jpeg' || contentType === 'image/png';
+      const contentType = response.headers.get("content-type");
+      const isJpgOrPng =
+        contentType === "image/jpeg" || contentType === "image/png";
 
       if (!isJpgOrPng) {
         const img = new Image();
@@ -184,26 +183,26 @@
         await imgLoaded;
 
         URL.revokeObjectURL(img.src); // Clean up
-        return convertImageToBase64(img, 'image/png');
+        return convertImageToBase64(img, "image/png");
       }
 
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.onloadend = () => {
           // remove the data URL prefix
-          let base64Image = reader.result.replace(dataUrlRegex, '');
+          let base64Image = reader.result.replace(dataUrlRegex, "");
           log(base64Image, "base64Image");
           resolve(base64Image);
         };
         reader.onerror = () => {
-          reject(new Error('Failed to read the blob as data URL.'));
+          reject(new Error("Failed to read the blob as data URL."));
         };
         reader.readAsDataURL(blob);
       });
     } catch (error) {
       if (error instanceof TypeError && error.message === "Failed to fetch") {
         jsNotif("✘ IP timeout, wait 5 minutes and try again", 5000, false);
-        throw new Error("✘ IP timeout, wait 5 minutes and try again",);
+        throw new Error("✘ IP timeout, wait 5 minutes and try again");
       } else {
         jsNotif(`✘${error}`, 5000, false);
       }
@@ -213,21 +212,26 @@
 
   // Helper function to convert an Image object to a base64 string
   function convertImageToBase64(img, outputFormat) {
-    const canvas = document.createElement('canvas');
+    const canvas = document.createElement("canvas");
     canvas.width = img.width;
     canvas.height = img.height;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
 
     // Clear the canvas with a white background
-    ctx.fillStyle = '#FFFFFF';
+    ctx.fillStyle = "#FFFFFF";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.drawImage(img, 0, 0);
     // return the base64 string without the data URL prefix
-    log(canvas.toDataURL(outputFormat).replace(/^data:image\/(png|jpeg);base64,/, ''));
-    return canvas.toDataURL(outputFormat).replace(/^data:image\/(png|jpeg);base64,/, '');
+    log(
+      canvas
+        .toDataURL(outputFormat)
+        .replace(/^data:image\/(png|jpeg);base64,/, "")
+    );
+    return canvas
+      .toDataURL(outputFormat)
+      .replace(/^data:image\/(png|jpeg);base64,/, "");
   }
-
 
   // async function toBase64Image(url) {
   //   // If it looks like a base64 string, check the image type and convert if necessary.
@@ -296,7 +300,6 @@
   //   return canvas.toDataURL(outputFormat);
   // }
 
-
   // async function toBase64Image(url) {
   //   // If it looks like a base64 string, return it as is.
   //   if (/^[A-Za-z0-9+/=,\s]*$/.test(url)) {
@@ -351,8 +354,6 @@
   //   }
   // }
 
-
-
   // async function getImageAsBase64(imgUrl) {
   //   try {
   //     // Try to get the image from the URL
@@ -383,7 +384,6 @@
   //     }
   //   }
   // }
-
 
   async function simulateTyping(input, value) {
     function fireEvent(element, eventConstructor, eventOptions) {
@@ -449,7 +449,6 @@
       input.value = value;
       input.dispatchEvent(new Event("input", { bubbles: true }));
     } catch (error) {
-
       jsNotif("could not set answer. Check your css selector");
     }
 
@@ -458,46 +457,41 @@
   }
 
   function clickElement(element) {
-    if (element && typeof element.dispatchEvent === 'function') {
-      const focusEvent = new FocusEvent('focus', {
+    if (element && typeof element.dispatchEvent === "function") {
+      const focusEvent = new FocusEvent("focus", {
         bubbles: true,
-        cancelable: true
+        cancelable: true,
       });
       element.dispatchEvent(focusEvent);
 
-      const mouseDownEvent = new MouseEvent('mousedown', {
+      const mouseDownEvent = new MouseEvent("mousedown", {
         view: window,
         bubbles: true,
         cancelable: true,
-        buttons: 1
+        buttons: 1,
       });
       element.dispatchEvent(mouseDownEvent);
 
-      const mouseUpEvent = new MouseEvent('mouseup', {
+      const mouseUpEvent = new MouseEvent("mouseup", {
         view: window,
         bubbles: true,
         cancelable: true,
-        buttons: 0
+        buttons: 0,
       });
       element.dispatchEvent(mouseUpEvent);
 
-      for (const eventName of ['mouseover', 'mousedown', 'mouseup', 'click']) {
+      for (const eventName of ["mouseover", "mousedown", "mouseup", "click"]) {
         const eventObject = new MouseEvent(eventName, {
           view: window,
           bubbles: true,
-          cancelable: true
+          cancelable: true,
         });
         element.dispatchEvent(eventObject);
       }
     } else {
-      console.error('Invalid element or dispatchEvent is not available.');
+      console.error("Invalid element or dispatchEvent is not available.");
     }
   }
-
-
-
-
-
 
   // async function toBase64Image(url) {
   //   const response = await fetch(url);
@@ -512,5 +506,4 @@
   //     reader.readAsDataURL(blob);
   //   });
   // }
-
 })();

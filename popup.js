@@ -1,3 +1,4 @@
+
 document.getElementById("imagePicker").addEventListener("click", function () {
     chrome.runtime.sendMessage({ command: "ImageElementPicker" });
     console.log("imagePicker");
@@ -494,6 +495,7 @@ const freebalurl = "https://free.nocaptchaai.com/balance";
 
 const refreshData = async () => {
 
+    let Local = await chrome.storage.sync.get(null);
 
     const refreshButton = document.getElementById("refresh-button");
     refreshButton.innerHTML = '<img src="/icons/s.svg" width="16px"  alt="██▒▒▒▒▒▒▒▒ 20%" /> ██▒▒▒▒▒▒▒▒  20% ';
@@ -501,13 +503,10 @@ const refreshData = async () => {
     refreshButton.innerHTML = '<img src="/icons/s.svg" width="16px"  alt="█████▒▒▒▒▒ 50%" /> █████▒▒▒▒▒ 50% ';
     await sleep(50);
     refreshButton.innerHTML = '<img src="/icons/s.svg" width="16px"  alt="█████████▒ 90%" /> █████████▒ 90% ';
-    let plan;
-    chrome.storage.sync.get(null, (settings) => {
-        console.log(settings.APIKEY);
-        plan = settings.PLANTYPE;
-    });
+
+    // console.log(plan, "planplan", plan === "free", Local.PLANTYPE);
     await fetchAndDisplayData(
-        plan === "free" ? freebalurl : probalurl,
+        Local.PLANTYPE === "free" ? freebalurl : probalurl,
         "balance-section",
         balanceFields
     );

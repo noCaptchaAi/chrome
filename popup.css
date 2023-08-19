@@ -8,7 +8,8 @@ body,
 
 body {
     padding: 3px;
-    border: 3px solid #00000038;
+    background-color: transparent;
+    border: 3px solid #6b6d6def;
     width: 400px;
     height: fit-content;
     overflow-y: hidden;

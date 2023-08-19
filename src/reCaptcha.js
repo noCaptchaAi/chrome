@@ -416,6 +416,7 @@
 
         if (RC.isDynamic33() === false) {
             log("dynamic", RC.isDynamic33());
+            await sleep(settings.reCaptchaSubmitDelay * 1000);
             submit();
             if (RC.isErrorSelect() || RC.isErrorDynamic()) {
                 log("error found, skipping");

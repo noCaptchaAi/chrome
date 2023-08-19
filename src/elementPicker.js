@@ -1,6 +1,4 @@
 (async () => {
-
-
     let selectedType = null;
     let highlightedElement = null;
     let metadataElement = null;
